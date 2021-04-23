@@ -12,7 +12,7 @@
   <body>
     <div class="wrapper">
       <ul class="nav clearfix">
-        <li>HOME</li>
+        <li class=active>HOME</li>
         <li>NEWS</li>
         <li>MYPAGE</li>
       </ul>
@@ -22,14 +22,22 @@
         <li class="is-hidden">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
       </ul>
     </div>
-    <script src="../../common/js/jquery.js"></script>
+    <script src="./js/jquery.js"></script>
     <script>
       // 今回やるのはタブメニューです。
-      // navの小要素であるliをクリックして、contents内の小要素であるli要素を表示させる。
+      $(function() {
+         // navの小要素であるliをクリックして、contents内の小要素であるli要素を表示させる。
+        $('.nav li').click(function() {
       // .index() 要素のindexを取得します。
+          var index = $('.nav li').index(this);
       // .eq() 引数に応じたindexの要素を指定します。
+          $('.nav li').removeClass('.active');
       // .addClass() クラスを追加します。
+          $(this).addClass('.active');
       // .removeClass() クラスを削除します。
+          $('.contents li').removeClass('show').eq(index).addClass('show');
+        });
+      });
     </script>
   </body>
 </html>
