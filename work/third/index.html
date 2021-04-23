@@ -22,20 +22,20 @@
         <li class="is-hidden">Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</li>
       </ul>
     </div>
-    <script src="./js/jquery.js"></script>
+    <script src="http://gizumo-inc.github.io/sample/javascript-lesson/jquery-curriculum/common/js/jquery.js"></script>
     <script>
       // 今回やるのはタブメニューです。
       $(function() {
          // navの小要素であるliをクリックして、contents内の小要素であるli要素を表示させる。
         $('.nav li').click(function() {
       // .index() 要素のindexを取得します。
-          var index = $('.contents li').index(this);
+          var index = $('.nav li').index(this);
       // .eq() 引数に応じたindexの要素を指定します。
           $('.contents li').removeClass('is-hidden').eq(index).addClass('is-hidden');
       // .addClass() クラスを追加します。
           $(this).addClass('.nav li');
       // .removeClass() クラスを削除します。
-          $('.nav li').removeClass('.nav');
+          $('.nav li').removeClass('.nav li');
         });
       });
     </script>
