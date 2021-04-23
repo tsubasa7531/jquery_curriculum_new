@@ -154,7 +154,7 @@
         // html的に書けば<div data-hoge='fuga'></div>です。
         $('#q10').find('li').click(function() {
           var num = $(this).index();
-          $('#q11').find('li').eq(num).addClass('large');
+          $('#q11').find('li').eq(num).addClass('large'); 
         });
         // .eq() DOM要素の引数の値に等しい番号のDOMを指定する。
         // $(this).index()で取得された値（何番目）をeq()の引数に入れることによって、#q10と対応した#q11のDOMを取得出来る。
