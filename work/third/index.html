@@ -27,8 +27,8 @@
       // 今回やるのはタブメニューです。
       $(function() {
         $('.nav li').click(function() {
-          var index = $('.nav li').index(this);  
-          $('.contents li').removeClass('is-hidden').eq(index).addClass('contents');
+          var index = $('li').index(this);
+          $('.contents li').removeClass('is-hidden').eq(index).addClass('is-hidden');
             // ナブをクリックしたら発動します
             // クリックされたタブの順番を変数に格納
           // コンテンツを一旦非表示にし、クリックされた順番のコンテンツのみを表示
