@@ -45,8 +45,18 @@
         </li>
       </ul>
     </div>
-    <script src="../../common/js/jquery.js"></script>
+    <script src="http://gizumo-inc.github.io/sample/javascript-lesson/jquery-curriculum/common/js/jquery.js"></script>
     <script>
+      $(function() {
+        $('.menu__list').children('li').hover(function() {
+          $(this).children('ul').stop().slideDown();
+        },  function() {
+              $(this).children('ul').slideUp();
+        });
+      });
+      // まずchildrenメソッドで.menu__listの子要素のみにhoverした時に発動します。
+      // 次に、this(ホバーされているmenu_list li)の子要素 ulに対し、.stop()で動作中のアニメーション処理を中止にしてslideDwnでスライドされながら表示。
+      // 最後にslideUpで今度は表示させた要素をスライドさせながら非表示にさせます
       // 今回やるのはドロップメニューです。
       // メニューをhoverすると隠れている中のメニューが表示され、メニューから離れると中のメニューが非表示されるプログラムです。
       // [使用するメソッド]
@@ -56,6 +66,8 @@
       // .next() 要素の隣の要素を取得します。これは使わなくてもできます。
       // .children() 要素の子要素を取得します。
       // .stop() 現在動作中のアニメーション処理を全て中止します。
+      // オブジェクト{}
+      // $(function() HTML要素を読み込んでからJqueryを実行する。読み込ませるために必要
     </script>
   </body>
 </html>

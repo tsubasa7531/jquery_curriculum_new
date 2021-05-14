@@ -82,8 +82,38 @@
         </ul>
       </div>
     </div>
-    <script src="../../common/js/jquery.js"></script>
+    <script src="http://gizumo-inc.github.io/sample/javascript-lesson/jquery-curriculum/common/js/jquery.js"></script>
     <script>
+      $(function() {
+        $('.select').change(function() {
+          var val = $(this).val();
+          if(val=='all') {
+            $('ul.list li').each(function() { 
+              $(this).show();
+            });
+          } else {
+            $('ul.list li').each(function() {
+              if($(this).data("category-type")==val) { 
+                $(this).show();
+              } else {
+                $(this).hide();
+              }
+            });
+          }
+        });
+      });
+      // セレクトボックスが切り替わったら発動します。 .change() input / select / textareaなどの要素の中身が変更された際にイベント処理を実行することができます。
+      // 選択したselectのvalue値を変数に格納します。 .val() 要素のvalueを取得。HTMLタグ内に記述されているvalue属性を取得したり変更可能。
+      // 90.91.92行目でもしvalとallが等しいときにセレクタ('ul.list li'）を繰り返し処理します。show()でselectの要素を表示させます。
+      // eachメソッドは、HTML要素・配列・オブジェクトなどに対して繰り返し処理を行うことができるメソッド。ループ処理、１つずつ所得可能
+
+      // else.条件式が違う場合はセレクタ('ul.list li'）を繰り返し処理します。・セレクトボックスのvalueとliのdata-category-typeが一致しているものをだけ表示させます。
+      // data()HTML要素内に付与されたdata属性に対して、取得・設定・変更などが簡単に行えるようになる。任意の値を保持させておく。
+      // $(this).show()で一致している時は要素を表示させます。
+      // $(this).hide(); 一致しない場合はその要素を非表示にします。
+
+
+
       // 今回やるのはソート機能です。
       // selectボックスをクリックして言語を選び、その言語と関係のあるリストだけが表示されるプログラムです。
       // [処理の流れ]
@@ -97,6 +127,8 @@
       // .data('') DOM要素にあるdata-~を取得できる
       // .change() セレクトボックスの値の変更をキャッチする関数
       // $().each() DOM要素を1つずつループ処理をする（ループ内で$(this)を使うと要素がひとつずつ取得できる）
+       // $(function() HTML要素を読み込んでからJqueryを実行する。読み込ませるために必要
+      //  if文:条件分岐を書くときに使う構文
     </script>
   </body>
 </html>
