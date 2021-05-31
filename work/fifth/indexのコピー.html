@@ -94,14 +94,14 @@
               // console.log(val);
               // console.log(index);
               // console.log(Element);
-              if(Element === val) {
-                $(this).show();
+              if($(this).data('category-type') === val) {
+                $(this).show();     
               } else {
                 $(this).hide();
               }
             });
-            }
-          });
+          }
+        });
       });
      
 
