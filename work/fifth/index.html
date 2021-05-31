@@ -88,23 +88,19 @@
         $(".select").change(function() {
           var val = $(this).val();
           if(val === 'all') {
-            $('ul.list li').each(function() {
-              $(this).show();
-            });
+            $('ul.list li').show();
           } else {
             $('ul.list li').each(function(index,Element) {
-              if($(this).data("category-type") === val ) {
-                $(this).show();
+              if($(Element).data("category-type") === val ) {
+                $(Element).show();
               } else {
-                $(this).hide();
+                $(Element).hide();
               }
             });
           }
         });
       });
-      
-
-      // セレクトボックスが切り替わったら発動します。 .change() input / select / textareaなどの要素の中身が変更された際にイベント処理を実行することができます。
+       // セレクトボックスが切り替わったら発動します。 .change() input / select / textareaなどの要素の中身が変更された際にイベント処理を実行することができます。
       // 選択したselectのvalue値を変数に格納します。 .val() 要素のvalueを取得。HTMLタグ内に記述されているvalue属性を取得したり変更可能。
       // 90.91.92行目でもしvalとallが等しいときにセレクタ('ul.list li'）を繰り返し処理します。show()でselectの要素を表示させます。
       // eachメソッドは、HTML要素・配列・オブジェクトなどに対して繰り返し処理を行うことができるメソッド。ループ処理、１つずつ所得可能
