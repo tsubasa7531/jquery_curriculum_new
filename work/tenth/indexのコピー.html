@@ -32,7 +32,7 @@
         $('.search__btn').on('click' , function () {
           $('lists').empty();
           var searchword = $('.search__text__input').val();
-     // 楽天ブックスの総合検索APIを使って製作してください。
+         // 楽天ブックスの総合検索APIを使って製作してください。
       // answerの挙動を良く見てね！
       //
       // 下記URLにAPIの仕様が載っているので、ブラウザで開いて参考にしてください。
@@ -75,7 +75,7 @@
       //
       // $.ajaxによってデータが取得できたら、必要なデータ(作品名とか作者名とか)を取得します。
       // 取得できたらHTMLに<ul class='lists'></ul>を用意しているので、下のテンプレに沿ってデータを入れ込みましょう。
-              $(data.Items).each(function (item) {
+              $.each(data.Items, function (item) {
                 var template =  '<li class="lists__item">' + 
                   '<div class="lists__item__inner">' + 
                   '<a href="' + item.Item.itemUrl + '"class="list__item__link" target="_blank">' +
@@ -86,10 +86,12 @@
                 
                 $('.lists').prepend(template);
               })
-          }).fail(function () {
+          }).fail(function (error) {
             $('.lists').after('<div class="datacoment"></div>')
             datacoment = $('.datacoment');
             datacoment.html('<p class="message">データ通信できませんでした<br>接続を確認してください。</p>');
+            // console.log(datacoment);
+            console.log(error);
             })
           });
         });
