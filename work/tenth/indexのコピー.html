@@ -54,24 +54,16 @@
           data: {
             //     // 「区分:サービス固有パラメーター」を確認して、必要な情報をdata内に入れましょう。
             // (今回はこの変数をIDとして使用します) ※メンターから別途渡されるファイルを読み込んでください。
-          applicationId: '1019399324990976605', 
+          applicationId: '101939932499097660', 
           booksGenreId: '001',
-          count: 20,
-          first: 1,
-          hits: 20,
-          last: 20,
-          pageCount: 100,
           page: 1,
+          hits: 20,
           keyword: searchword
           }
         }).done(function(data) {
           console.log(data.hits);   
           // console.log(searchword)
-          if(data.hits === 0) {
-            $('.lists').after('<div class="coment"></div>')
-            coment = $('.coment');
-            coment.html('<p class="message">検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。</p>');
-          }
+        
       //   // この中にデータ取得後の動きを記述していきます。
       //
       //
@@ -94,9 +86,10 @@
               zero = $('.zero');
               zero.html('<p class="message">文字が入力されてません。</p>');
             } else {
-              $('.lists').after('<div class="datacoment"></div>')
-              datacoment = $('.datacoment');
-              datacoment.html('<p class="message">リクエスト過多です。しばらく時間を置いてからお試しください。</p>');
+              $('.lists').after('<div class="coment"></div>')
+              coment = $('.coment');
+              coment.html('<p class="message">検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。</p>');
+          
             // console.log(datacoment);
             // console.log(error);
             }
