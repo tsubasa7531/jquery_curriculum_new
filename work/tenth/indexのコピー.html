@@ -54,14 +54,21 @@
           data: {
             //     // 「区分:サービス固有パラメーター」を確認して、必要な情報をdata内に入れましょう。
             // (今回はこの変数をIDとして使用します) ※メンターから別途渡されるファイルを読み込んでください。
-          applicationId: '101939932499097660', 
-          booksGenreId: '001',
-          page: 1,
+          applicationId: '', 
+          booksGenreId: '000',
+          title: '',
+          hardware: '',
+          makerCode: '',
+          label: '',
+          jan: '',
+          page: 20,
           hits: 20,
           keyword: searchword
           }
         }).done(function(data) {
-          console.log(data.hits);   
+          console.log(data.hits);
+          if (data.count > 0){
+          $("ul").empty();
           // console.log(searchword)
         
       //   // この中にデータ取得後の動きを記述していきます。
@@ -69,30 +76,30 @@
       //
       // $.ajaxによってデータが取得できたら、必要なデータ(作品名とか作者名とか)を取得します。
       // 取得できたらHTMLに<ul class='lists'></ul>を用意しているので、下のテンプレに沿ってデータを入れ込みましょう。
-              $.each(data.Items, function functionName(item) {
-                var template =  '<li class="lists__item">' + 
-                  '<div class="lists__item__inner">' + 
-                  '<a href="' + item.Item.itemUrl + '"class="list__item__link" target="_blank">' +
-                  '<img src="' + item.Item.mediumImageUrl + '"class="lists__item__img" alt="' + item.Item.title + '">' + 
-                  '<p class="lists__item__detail">作品名：' + items.Item.title + '</p>' +
-                  '<p class="lists__item__detail">作者：' + items.Item.author + '</p>' +
-                  '<p class="lists__item__detail">出版社：' + item.Item.publisherName + '</p>' + '</a>' + '</div>' + '</li>'
+          $.each(data.Items, function(i,item) {
+            console.log(data.Items);
+            var list =  '<li class="lists__item">' + 
+            '<div class="lists__item__inner">' + 
+            '<a href="' + item.Item.itemUrl + '"class="list__item__link" target="_blank">' +
+            '<img src="' + item.Item.mediumImageUrl + '"class="lists__item__img" alt="' + item.Item.title + '">' + 
+            '<p class="lists__item__detail">作品名：' + items.Item.title + '</p>' +
+            '<p class="lists__item__detail">作者：' + items.Item.author + '</p>' +
+            '<p class="lists__item__detail">出版社：' + item.Item.publisherName + '</p>' + '</a>' + '</div>' + '</li>'
 
-                  $('.lists').prepend(template);
-              })
-          }).fail(function (error) {
-            if(searchword === '') {
-              $('.lists').after('<div class="zero"></div>')
-              zero = $('.zero');
-              zero.html('<p class="message">文字が入力されてません。</p>');
-            } else {
-              $('.lists').after('<div class="coment"></div>')
-              coment = $('.coment');
-              coment.html('<p class="message">検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。</p>');
-          
-            // console.log(datacoment);
-            // console.log(error);
+            $('.lists').prepend(list);
+          })
+          }
+        }).fail(function (error) {
+          if(searchword === '') {
+            $('.lists').after('<div class="zero"></div>')
+            zero = $('.zero');
+            zero.html('<p class="message">文字が入力されてません。</p>');
+          } else {
+            $('.lists').after('<div class="coment"></div>')
+            coment = $('.coment');
+            coment.html('<p class="message">検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。</p>');
             }
+            // $('.message').empty();
           })
         });
       });
