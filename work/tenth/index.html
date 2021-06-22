@@ -58,7 +58,7 @@
           keyword: searchword,
           applicationId: '1019399324990976605', 
           booksGenreId: '001',
-          page: 100,
+          page: 1,
           hits: 20
           }
         }).done(function(data) {
@@ -82,33 +82,34 @@
             '<p class="lists__item__detail">作者：' + item.Item.author + '</p>' +
             '<p class="lists__item__detail">出版社：' + item.Item.publisherName + '</p>' + '</a>' + '</div>' + '</li>'
 
-            $('.lists').prepend(template);
+            $('.lists').append(template);
           })
         }).fail(function () {
           if(searchword === '') {  
             $('.message').html('文字が入力されていません');
           } else  {
-            $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。')
+            $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。');
             }
           })
         });
       });
+    
     //取得できた書籍の件数をもとに、ページャを作成しましょう
     //    ページャの条件
     //   ├ 「現在のページ数」と「全てのページ数」が表示されている
     //   ├ 「前へ」と「次へ」のボタンがある
     //    ├ 1ページ目では「前へ」に、最後のページでは「次へ」にdisabledクラスをつけて非活性（使用不能）にする
     //    └ 1ページしかない場合はどちらもdisabledクラスをつけて非活性にする
-    //  ページャのテンプレート
-          // <div class="pager" data-js="pager">
-      //   <div class="counter">
-      //     <span class="counter-current"></span>/<span class="counter-all"></span>
-      //   </div>
-      //   <div class="btn-wrapper">
-      //     <a class="btn-item" data-js="page-prev" href="">前へ</a>
-      //     <a class="btn-item" data-js="page-next" href="">次へ</a>
-      //   </div>
-      // </div>
+    // //  ページャのテンプレート
+      '<div class="pager" data-js="pager">' +
+        '<div class="counter">' +
+          '<span class="counter-current"></span>/<span class="counter-all"></span>' +
+        '</div>' +
+        '<div class="btn-wrapper">' +
+          '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
+          '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
+        '</div>' +
+      '</div>'
     </script>
   </body>
 </html>
