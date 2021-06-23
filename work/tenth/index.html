@@ -42,7 +42,7 @@
       //
       //
       // [使うメソッド]
-      // e.preventDefault イベントをキャンセルするためのメソッド。今回はaタグの遷移を無効化します。event の Default の動作を prevent する（妨げる）。
+      // e.preventDefaultイベントをキャンセルするためのメソッド。今回はaタグの遷移を無効化します。event の Default の動作を prevent する（妨げる）。
       // on('click') onメソッドを使うことで、動的に出力される要素に対してもイベント登録が行えます。
       // $.each(配列, function functionName() {}) 配列に対しての繰り返し処理が行えます。
       // $.ajax({}) 外部ファイルやURLに対してデータをリクエストすることができます。
@@ -65,8 +65,7 @@
           console.log(data.hits);
           if(data.hits === 0) {
             $('.message').html('検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。');
-          } 
-           
+          }
       //   // この中にデータ取得後の動きを記述していきます。
       //
       //
@@ -82,15 +81,17 @@
             '<p class="lists__item__detail">作者：' + item.Item.author + '</p>' +
             '<p class="lists__item__detail">出版社：' + item.Item.publisherName + '</p>' + '</a>' + '</div>' + '</li>'
 
-            $('.lists').append(template);
+            $('.lists').append(template);    
           })
-        }).fail(function () {
+        }).fail(function (error) {
+          console.log(error);
           if(searchword === '') {  
-            $('.message').html('文字が入力されていません');
-          } else  {
+            $('.message').html('文字が入力されていません'); 
+          }
+          if(data.hits < 2) {
             $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。');
-            }
-          })
+          }
+         });
         });
       });
     
@@ -101,6 +102,7 @@
     //    ├ 1ページ目では「前へ」に、最後のページでは「次へ」にdisabledクラスをつけて非活性（使用不能）にする
     //    └ 1ページしかない場合はどちらもdisabledクラスをつけて非活性にする
     // //  ページャのテンプレート
+      var pagerTemplate = (
       '<div class="pager" data-js="pager">' +
         '<div class="counter">' +
           '<span class="counter-current"></span>/<span class="counter-all"></span>' +
@@ -109,7 +111,8 @@
           '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
           '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
         '</div>' +
-      '</div>'
+      '</div>');
+      $('.lists').after(pagerTemplate);
     </script>
   </body>
 </html>
