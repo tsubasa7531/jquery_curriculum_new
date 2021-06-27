@@ -84,17 +84,14 @@
             $('.lists').append(template);    
           })
         }).fail(function (error) {
-          console.log(error);
-          if(searchword === '') {  
+          // console.log(error.status);
+          if(error.status === 400) {  
             $('.message').html('文字が入力されていません'); 
           }
-          if(data.hits < 2) {
+          if(error.status === 429) {
             $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。');
           }
          });
-        });
-      });
-    
     //取得できた書籍の件数をもとに、ページャを作成しましょう
     //    ページャの条件
     //   ├ 「現在のページ数」と「全てのページ数」が表示されている
@@ -102,17 +99,19 @@
     //    ├ 1ページ目では「前へ」に、最後のページでは「次へ」にdisabledクラスをつけて非活性（使用不能）にする
     //    └ 1ページしかない場合はどちらもdisabledクラスをつけて非活性にする
     // //  ページャのテンプレート
-      var pagerTemplate = (
-      '<div class="pager" data-js="pager">' +
-        '<div class="counter">' +
-          '<span class="counter-current"></span>/<span class="counter-all"></span>' +
-        '</div>' +
-        '<div class="btn-wrapper">' +
-          '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
-          '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
-        '</div>' +
-      '</div>');
-      $('.lists').after(pagerTemplate);
+        var pagerTemplate = (
+        '<div class="pager" data-js="pager">' +
+          '<div class="counter">' +
+            '<span class="counter-current"></span>/<span class="counter-all"></span>' +
+          '</div>' +
+          '<div class="btn-wrapper">' +
+            '<a class="btn-item disabled" data-js="page-prev" href="">前へ</a>' +
+            '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
+          '</div>' +
+        '</div>');
+        $('.lists').after(pagerTemplate);
+       });
+      });
     </script>
   </body>
 </html>
