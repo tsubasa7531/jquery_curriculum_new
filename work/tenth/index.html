@@ -100,16 +100,16 @@
     //    └ 1ページしかない場合はどちらもdisabledクラスをつけて非活性にする
     // //  ページャのテンプレート
         var pagerTemplate = (
-        '<div class="pager" data-js="pager">' +
-          '<div class="counter">' +
-            '<span class="counter-current"></span>/<span class="counter-all"></span>' +
-          '</div>' +
-          '<div class="btn-wrapper">' +
-            '<a class="btn-item disabled" data-js="page-prev" href="">前へ</a>' +
-            '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
-          '</div>' +
-        '</div>');
-        $('.lists').after(pagerTemplate);
+          '<div class="pager" data-js="pager">' +
+            '<div class="counter">' +
+              '<span class="counter-current"></span>/<span class="counter-all"></span>' +
+            '</div>' +
+            '<div class="btn-wrapper">' +
+              '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
+              '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
+            '</div>' +
+          '</div>');
+          $('.lists').after(pagerTemplate);
        });
       });
     </script>
