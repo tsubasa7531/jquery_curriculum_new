@@ -33,25 +33,31 @@
           // 本が検索される
           $('.lists').empty();
           $('.message').empty();
-          var searchword = $('.search__text__input').val();
-          getBooks(searchword);
+          getBooks();
           // 本のデータが表示される
         });
 
-        $('.pagenext').on('click', function() {
+        $('.btn-item').on('click', function() {
           // 本が検索される
-          page = page + 1;
-          getBooks(scope);
+            if (page > 0) {
+              page--;
+              draw();
+            }
+          getBooks();
           // 次の20件の本のデータが表示される
         });
 
-        $('.pageprev').on('click', function() {
+        $('.btn-item').on('click', function() {
           // 本が検索される
-          page = page - 1;
+            if (page < ($('lists').size() - 1) /displayrows - 1) {
+              page++;
+              draw();
+            }
           getBooks()
           // 前の20件の本のデータが表示される
         });
-        function getBooks(searchword) {
+        function getBooks() {
+          var searchword = $('.search__text__input').val();
           $.ajax({
             url: 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522',
             type: 'GET',
@@ -72,7 +78,6 @@
             createBooksElement(data);
            // pagerを作成する関数
           }).fail(function (error) {
-          // console.log(error.status);
             if(error.status === 400) {  
               $('.message').html('文字が入力されていません'); 
             }
@@ -80,8 +85,6 @@
               $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。');
             }
           });
-          var scope = searchword;
-          console.log(scope);
         }
        // 取得した本の配列からHTMLを作成する関数
         function createBooksElement(data) {
@@ -108,7 +111,7 @@
               '</div>' +
             '</div>');
             $('.lists').after(pagerTemplate);
-          });
+      });
     </script>
   </body>
 </html>
