@@ -40,10 +40,9 @@
 
         $('.btn-item').on('click', function() {
           // 本が検索される
-            if (page > 0) {
-              page--;
+            console.log(page > 0);
+           
               getBooks();
-            }
           // 次の20件の本のデータが表示される
         });
 
