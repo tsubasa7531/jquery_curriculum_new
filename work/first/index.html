@@ -51,7 +51,7 @@
       </div>
       <h2 class="sub-title">Q9</h2>
       <div class="question">
-        <div class="btn" id="q9" data-text="jQuery">Q9</div>
+        <div class="btn" id="q9" data-text="jQuery" data-number="9">Q9</div>
       </div>
       <h2 class="sub-title">Q10</h2>
       <div class="question">
@@ -125,14 +125,14 @@
 // 変数textに#9のtextを代入。それをconsoleに表示
 // data():HTML要素内に付与された所得、設定、変更などが簡単に行えるようになる。独自の属性を作成して付与できる
         $('#q9').click(function() {
-          var text = $(this).data('text');
+          var text = $(this).data();
           console.log(text);
         });
 // 第10問 id='q10'の子要素をクリックしたら、その要素のインデックスと等しいid='q11'の子要素にlargeというクラスを追加せよ。
 // 変数numに#10のクリックされたリストの順番を変数に格納。findで#11からしたの子要素を所得して、eq()で特定のindex番号を指定して特定の要素を所得。
         $('#q10').find('li').click(function() {
           var num = $(this).index();
-          $('#q11').find('li').eq(num).addClass('large');
+          $('#q11').find('li').eq(index).addClass('large');
         });
       });
     </script>

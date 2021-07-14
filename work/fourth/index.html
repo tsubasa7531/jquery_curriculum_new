@@ -50,8 +50,8 @@
       $(function() {
         $('.menu__list').children('li').hover(function() {
           $(this).children('ul').stop().slideDown();
-        },  function() {
-              $(this).children('ul').slideUp();
+        }, function() {
+          $(this).children('ul').stop().slideUp();
         });
       });
       // まずchildrenメソッドで.menu__listの子要素のみにhoverした時に発動します。

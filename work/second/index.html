@@ -26,26 +26,18 @@
       // .modal-show をクリックすることで .modal をfadeInさせる。
       // modalをクリックする事で発動します。modalをゆっくり時間をかけて表示させます
         $('.modal-show').click(function() {
-          $('.modal').fadeIn();
+          $('.modal').fadeIn(1000);
         });
       // .modal-close をクリックで .modal をfadeOutさせる。
       // modal-closeをクリックする事で発動します。modalを少しずつアニメーションさせながら非表示にさせます
         $('.modal-close').click(function() {
-          $('.modal').fadeOut();
+          $('.modal').fadeOut(1000);
         });
       // .click() クリック時のイベントを登録する。
       // .fadeIn() 一定時間かけてフェードインする。
       // modal-showをクリックしたらfadeInさせます。fadeInしたら1秒かけて表示させます
-        $('.modal-show').click(fadeIn);
-        function fadeIn() {
-          $('.modal').fadeIn(1000);
-        }
       // .fadeOut() 一定時間かけてフェードアウトする。
       // modal-closeをクリックしたらfadeOutさせます。fadeOutしたら1秒かけて少しずつ非表示にさせます。
-        $('.modal-close').click(fadeOut);
-        function fadeOut() {
-          $('.modal').fadeOut(1000);
-        }
       });
     </script>
   </body>
