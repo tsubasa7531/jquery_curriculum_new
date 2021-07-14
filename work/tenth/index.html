@@ -33,25 +33,20 @@
           // 本が検索される
           $('.lists').empty();
           $('.message').empty();
-          var searchword = $('.search__text__input').val();
-          getBooks()
+          getBooks();
           // 本のデータが表示される
         });
 
-        $('.pagenext').on('click', function() {
+        $(document).on('click', 'btn-item', function(e) {
           // 本が検索される
-          page = page + 1;
-          getBooks()
+          e.preventDefault();
+          getBooks();
           // 次の20件の本のデータが表示される
         });
 
-        $('.pageprev').on('click', function() {
-          // 本が検索される
-          page = page - 1;
-          getBooks()
-          // 前の20件の本のデータが表示される
-        });
         function getBooks() {
+          var searchword = $('.search__text__input').val();
+          console.log(searchword);
           $.ajax({
             url: 'https://app.rakuten.co.jp/services/api/BooksTotal/Search/20130522',
             type: 'GET',
@@ -66,14 +61,14 @@
               hits: 20
             }
           }).done(function(data) {
-            console.log(data.hits);
+            console.log('b');
             if(data.hits === 0) {
               $('.message').html('検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。');
             }
             createBooksElement(data);
            // pagerを作成する関数
           }).fail(function (error) {
-          // console.log(error.status);
+            console.log('c');
             if(error.status === 400) {  
               $('.message').html('文字が入力されていません'); 
             }
@@ -81,11 +76,11 @@
               $('.message').html('リクエスト過多です。しばらく時間を置いてからお試しください。');
             }
           });
+          console.log('d');
         }
        // 取得した本の配列からHTMLを作成する関数
         function createBooksElement(data) {
           $.each(data.Items, function(i,item) {
-            console.log(data.Items);
             var template =  '<li class="lists__item">' + 
             '<div class="lists__item__inner">' + 
             '<a href="' + item.Item.itemUrl + '"class="list__item__link" target="_blank">' +
@@ -107,8 +102,8 @@
                 '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
               '</div>' +
             '</div>');
-            $('.lists').after(pagerTemplate);
-          });
+          $('.lists').after(pagerTemplate);
+      });
     </script>
   </body>
 </html>
