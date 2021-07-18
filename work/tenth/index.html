@@ -37,23 +37,21 @@
           // 本のデータが表示される
         });
 
-        $('page-next').on('click', 'btn-item', function(e) {
+        $(document).on('click', 'btn-item', function() {
           // 本が検索される
-          if(page * hits > totalrecord) {
-            page++;
-            getBooks();
-          }
+          console.log('text');
+          getBooks();
           // 次の20件の本のデータが表示される
         });
 
-        $('.page-prev').on('click', 'btn-item', function(e) {
-          // 本が検索される
-          if(page > 0) {
-            page--;
-            getBooks();
-          }
+        // $(document).on('click', 'btn-item', function() {
+        //   // 本が検索される
+        //   console.log('ok1');
+        //   e.preventDefault();
+        //   console.log('ok2');
+        //     getBooks();
           // 次の20件の本のデータが表示される
-        });
+        // });
 
         function getBooks() {
           var searchword = $('.search__text__input').val();
@@ -75,6 +73,8 @@
             console.log('b');
             if(data.hits === 0) {
               $('.message').html('検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。');
+            } else {
+              $('.lists').after(pagerTemplate);
             }
             createBooksElement(data);
            // pagerを作成する関数
@@ -103,18 +103,17 @@
           })
         }
 
-          var pagerTemplate = (
-            '<div class="pager" data-js="pager">' +
-              '<div class="counter">' +
-                '<span class="counter-current"></span>/<span class="counter-all"></span>' +
-              '</div>' +
-              '<div class="btn-wrapper">' +
-                '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
-                '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
-              '</div>' +
-            '</div>')
-          $('.lists').after(pagerTemplate);
-      });
+        var pagerTemplate = (
+          '<div class="pager" data-js="pager">' +
+            '<div class="counter">' +
+              '<span class="counter-current"></span>/<span class="counter-all"></span>' +
+            '</div>' +
+            '<div class="btn-wrapper">' +
+              '<a class="btn-item" data-js="page-prev" href="">前へ</a>' +
+              '<a class="btn-item" data-js="page-next" href="">次へ</a>' +
+            '</div>' +
+          '</div>')
+      });   
     </script>
   </body>
 </html>
