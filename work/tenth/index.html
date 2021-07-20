@@ -37,21 +37,21 @@
           // 本のデータが表示される
         });
 
-        $(document).on('click', 'btn-item', function() {
+        var pageNum = 0;
+        $(document).on('click', '.page-next', function() {
           // 本が検索される
-          console.log('text');
+          console.log(page > 0);
+          var pageNum = pageNum + 1;
           getBooks();
           // 次の20件の本のデータが表示される
         });
 
-        // $(document).on('click', 'btn-item', function() {
-        //   // 本が検索される
-        //   console.log('ok1');
-        //   e.preventDefault();
-        //   console.log('ok2');
-        //     getBooks();
+        $(document).on('click', 'page-prev', function() {
+          // 本が検索される
+          console.log(page > 0);
+            getBooks();
           // 次の20件の本のデータが表示される
-        // });
+        });
 
         function getBooks() {
           var searchword = $('.search__text__input').val();
