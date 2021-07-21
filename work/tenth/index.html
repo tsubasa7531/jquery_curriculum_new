@@ -37,17 +37,19 @@
           // 本のデータが表示される
         });
 
-        var pageNum = 0;
-        $(document).on('click', '.page-next', function() {
+       $(document).on('click', '.page-next', function(e) {
           // 本が検索される
-          console.log(page > 0);
-          var pageNum = pageNum + 1;
+          e.preventDefault();
+          console.log('text');
+          page = page + 1;
+          page++;
           getBooks();
           // 次の20件の本のデータが表示される
         });
 
-        $(document).on('click', 'page-prev', function() {
+        $(document).on('click', '.page-prev', function(e) {
           // 本が検索される
+          e.preventDefault();
           console.log(page > 0);
             getBooks();
           // 次の20件の本のデータが表示される
