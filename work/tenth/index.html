@@ -37,23 +37,22 @@
           // 本のデータが表示される
         });
 
-       $(document).on('click', '.page-next', function(e) {
+        $('.btn-item').on('click', 'page-next', function() {
           // 本が検索される
-          e.preventDefault();
           console.log('text');
-          page = page + 1;
-          page++;
+          e.preventDefault();
+          for (var i = 1; i <= 100; i++){
+           
+          }
           getBooks();
-          // 次の20件の本のデータが表示される
         });
 
-        $(document).on('click', '.page-prev', function(e) {
-          // 本が検索される
-          e.preventDefault();
-          console.log(page > 0);
-            getBooks();
-          // 次の20件の本のデータが表示される
-        });
+        // $('.btn-item').on('click', 'page-prev', function(e) {
+        //   // 本が検索される
+        //   e.preventDefault();
+        //   getBooks();
+        //   // 次の20件の本のデータが表示される
+        // });
 
         function getBooks() {
           var searchword = $('.search__text__input').val();
@@ -76,9 +75,9 @@
             if(data.hits === 0) {
               $('.message').html('検索結果が見つかりませんでした。<br>別のキーワードで検索して下さい。');
             } else {
+              createBooksElement(data);
               $('.lists').after(pagerTemplate);
             }
-            createBooksElement(data);
            // pagerを作成する関数
           }).fail(function (error) {
             console.log('c');
@@ -104,7 +103,7 @@
             $('.lists').append(template); 
           })
         }
-
+       
         var pagerTemplate = (
           '<div class="pager" data-js="pager">' +
             '<div class="counter">' +
