@@ -37,22 +37,22 @@
           // 本のデータが表示される
         });
 
-        $('.btn-item').on('click', 'page-next', function() {
-          // 本が検索される
-          console.log('text');
+        $('.btn-item').on ('click', 'page-next', function(e) {
+        // 本が検索される
           e.preventDefault();
-          for (var i = 1; i <= 100; i++){
-           
+          console.log('text');
+          $('.page-next').trigger('click', [$(this).text()]);
+          for (var i = 1; i <= 100; i++) {
+            getBooks();
           }
-          getBooks();
         });
 
-        // $('.btn-item').on('click', 'page-prev', function(e) {
-        //   // 本が検索される
-        //   e.preventDefault();
-        //   getBooks();
-        //   // 次の20件の本のデータが表示される
-        // });
+        $('.btn-item').on('click', '.page-prev', function(e) {
+          // 本が検索される
+          e.preventDefault();
+          getBooks();
+          // 次の20件の本のデータが表示される
+        });
 
         function getBooks() {
           var searchword = $('.search__text__input').val();
