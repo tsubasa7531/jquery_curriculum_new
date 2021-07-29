@@ -37,8 +37,9 @@
           // 本のデータが表示される
         });
 
-        $('.btn-wrapper').on('click', '.page-next', function(e) {
+        $('.btn-wrapper').on('click', 'page-next', function(e) {
         // 本が検索される
+          $('page-next').text("click!");
           console.log('next');
           e.preventDefault();
           // for (var i = 1; i <= 100; i++) {
